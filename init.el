@@ -14,8 +14,9 @@
 
 ;; Initialize package.el
 (require 'package)
-(dolist (source '(("melpa" . "http://melpa.milkbox.net/packages/"))
-                (package-initialize))
+(dolist (source
+         '(("melpa" . "http://melpa.milkbox.net/packages/"))
+         (package-initialize))
   (add-to-list 'package-archives source t))
 
 ;; Ensure installation of my favorite packages
@@ -36,7 +37,7 @@
       (package-install package))))
 
 (setq-default tab-width 2)
-(setq indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
