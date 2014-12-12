@@ -52,11 +52,11 @@
 ;; Enable autopair by default
 (eval-after-load "autopair-autoloads"
   '(progn
-		 (require 'autopair)
+     (require 'autopair)
      (autopair-global-mode t)))
 
 (eval-after-load 'autopair
-	(setq autopair-autowrap t))
+  (setq autopair-autowrap t))
 
 ;; Theming configuration
 (eval-after-load "moe-theme-autoloads"
@@ -74,7 +74,7 @@
 
 ;; Syntax checking with Flycheck
 (eval-after-load "flycheck-autoloads"
-	'(require 'flycheck))
+  '(require 'flycheck))
 
 (eval-after-load 'flycheck
   '(progn
