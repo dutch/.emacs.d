@@ -57,7 +57,7 @@
      (autopair-global-mode t)))
 
 (eval-after-load 'autopair
-  (setq autopair-autowrap t))
+  '(setq autopair-autowrap t))
 
 ;; Theming configuration
 (eval-after-load "moe-theme-autoloads"
