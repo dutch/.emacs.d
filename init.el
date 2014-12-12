@@ -46,17 +46,20 @@
     (setq inferior-lisp-program "sbcl")))
 
 ;; Use Nyan Cat in place of the scrollbar
-(eval-after-load 'nyan-mode
+(eval-after-load "nyan-mode-autoloads"
   '(nyan-mode t))
 
 ;; Enable autopair by default
-(eval-after-load 'autopair
+(eval-after-load "autopair-autoloads"
   '(progn
-     (autopair-global-mode 1)
-     (setq autopair-autowrap t)))
+		 (require 'autopair)
+     (autopair-global-mode t)))
+
+(eval-after-load 'autopair
+	(setq autopair-autowrap t))
 
 ;; Theming configuration
-(eval-after-load 'moe-theme
+(eval-after-load "moe-theme-autoloads"
   '(when (display-graphic-p)
      (require 'moe-theme)
      (load-theme 'moe-light t)
@@ -70,6 +73,9 @@
   '(add-hook 'after-init-hook 'global-company-mode))
 
 ;; Syntax checking with Flycheck
+(eval-after-load "flycheck-autoloads"
+	'(require 'flycheck))
+
 (eval-after-load 'flycheck
   '(progn
      (add-hook 'after-init-hook 'global-flycheck-mode)
