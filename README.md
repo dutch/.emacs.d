@@ -1,5 +1,4 @@
-Dutch's GNU Emacs Config
-========================
+# clamberson's init.el
 
 Most of this is ripped from the configs of various people around the
 internet, as seems to be the common case. I claim no expertise in
