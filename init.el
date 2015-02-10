@@ -1,5 +1,10 @@
-;;; init.el --- clamberson's configuration file
+;;; init.el --- clamberson's GNU Emacs configuration
 
+;;; Commentary:
+;; This is my personal GNU Emacs configuration file, loading my favorite
+;; plugins and settings.
+
+;;; Code:
 ;; Remove all GUI elements
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -14,13 +19,12 @@
 
 ;; Initialize package.el
 (require 'package)
-(dolist (source
-         '(("melpa" . "http://melpa.milkbox.net/packages/"))
-         (package-initialize))
-  (add-to-list 'package-archives source t))
+(let ((sources '(("melpa" . "http://melpa.milkbox.net/packages/"))))
+  (dolist (source sources (package-initialize))
+    (add-to-list 'package-archives source t)))
 
 ;; Ensure installation of my favorite packages
-(defvar my-packages
+(defvar *my-packages*
   '(moe-theme
     nyan-mode
     autopair
@@ -29,10 +33,11 @@
     flycheck-rust))
 
 (defun install-packages ()
+  "Load all packages listed in the global variable *my-packages*."
   (interactive)
   (unless package-archive-contents
     (package-refresh-contents))
-  (dolist (package my-packages)
+  (dolist (package *my-packages*)
     (unless (package-installed-p package)
       (package-install package))))
 
@@ -40,6 +45,8 @@
 (setq-default indent-tabs-mode nil)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(defvar inferior-lisp-program)
 
 (let ((slime-helper (expand-file-name "~/quicklisp/slime-helper.el")))
   (when (file-exists-p slime-helper)
@@ -64,7 +71,7 @@
   '(when (display-graphic-p)
      (require 'moe-theme)
      (load-theme 'moe-light t)
-     (set-face-attribute 'default nil :font "Source Code Pro-18")))
+     (set-face-attribute 'default nil :font "Input Mono Light-14")))
 
 ;; Auto-completion with company
 (eval-after-load "company-autoloads"
